@@ -24,7 +24,6 @@ public class NamesListController {
         this.kafkaProducerService = kafkaProducerService;
     }
 
-
     @PostMapping("/upload")
     public ResponseEntity<NamesUploadResponseDTO> uploadNames(@RequestParam("file")MultipartFile file){
         validadeEmptyFile(file);
@@ -34,7 +33,7 @@ public class NamesListController {
         return ResponseEntity.ok(response);
     }
 
-    private void validadeEmptyFile(MultipartFile file) {
+    void validadeEmptyFile(MultipartFile file) {
         if (file.isEmpty()) {
             throw new FileEmptyException("File is empty");
         }
