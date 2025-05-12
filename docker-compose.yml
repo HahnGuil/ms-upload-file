@@ -32,7 +32,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: msprojects
     volumes:
-      - D:\Documentos\Projetos\Postgres:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
 
 volumes:
   postgres-data:

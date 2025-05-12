@@ -1,6 +1,6 @@
-package br.com.hahn.msuploadfile.presentation.controller;
+package br.com.hahn.msuploadfile.presentation.api.controller;
 
-import br.com.hahn.msuploadfile.infrastructure.kafka.service.KafkaProducerService;
+import br.com.hahn.msuploadfile.infrastructure.kafka.KafkaProducerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
