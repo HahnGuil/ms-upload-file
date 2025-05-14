@@ -10,7 +10,7 @@
     </parent>
     <groupId>br.com.hahn</groupId>
     <artifactId>ms-upload-file</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>ms-upload-file</name>
     <description>ms-upload-file</description>
     <url/>
@@ -29,6 +29,16 @@
     <properties>
         <java.version>21</java.version>
     </properties>
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <url>http://nexus:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus</id>
+            <url>http://nexus:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

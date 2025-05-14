@@ -34,9 +34,37 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
+  nexus:
+    image: sonatype/nexus3:latest
+    container_name: nexus-repo
+    ports:
+      - "8081:8081"
+    volumes:
+      - nexus-data:/nexus-data
+    networks:
+      - mongo-net
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+    networks:
+      - mongo-net
+
 volumes:
   postgres-data:
     name: postgres_data
+  nexus-data:
+    name: nexus_data
+  jenkins-data:
+    name: jenkins_data
 
 networks:
   mongo-net:
