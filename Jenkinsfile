@@ -38,11 +38,14 @@ pipeline {
 
         stage('Deploy to Localhost') {
             steps {
-                // Stop existing containers if running
-                sh 'docker-compose down || true'
+                // Copia o novo JAR para dentro do container
+                sh 'docker cp target/*.jar ms-applications:/app/app.jar'
 
-                // Build and start containers
-                sh 'docker-compose up -d --build'
+                // Mata o processo antigo do Java
+                sh 'docker exec ms-applications pkill -f "java -jar" || true'
+
+                // Inicia a aplicação novamente em background
+                sh 'docker exec -d ms-applications java -jar /app/app.jar'
             }
         }
     }
