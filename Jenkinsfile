@@ -33,13 +33,6 @@ pipeline {
             }
         }
 
-        stage('Deploy to Nexus') {
-            steps {
-                echo 'Nexus fase'
-                sh 'mvn deploy -DskipTests'
-            }
-        }
-
         stage('Deploy to Localhost') {
             steps {
                 echo 'Deploy on localhost'
