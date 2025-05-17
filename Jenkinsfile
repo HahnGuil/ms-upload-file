@@ -24,6 +24,13 @@ pipeline {
         stage('Deploy to Localhost') {
             steps {
                 echo 'Deploy on localhost'
+                // Cria o container se não existir
+                echo 'Creating container'
+                sh '''
+                if [ ! "$(docker ps -a -q -f name=ms-applications)" ]; then
+                    docker run -d --name ms-applications -p 8085:8085 -w /app eclipse-temurin:21-jdk tail -f /dev/null
+                fi
+                '''
                 // Copia o novo JAR para dentro do container
                 sh 'docker cp target/*.jar ms-applications:/app/app.jar'
 
