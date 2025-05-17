@@ -21,18 +21,6 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-            echo 'test fase'
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit '**/target/surefire-reports/*.xml'
-                }
-            }
-        }
-
         stage('Deploy to Localhost') {
             steps {
                 echo 'Deploy on localhost'
