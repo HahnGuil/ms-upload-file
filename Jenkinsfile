@@ -34,15 +34,15 @@ pipeline {
         }
 
         stage('Deploy to Nexus') {
-            echo 'Nexus fase'
             steps {
+                echo 'Nexus fase'
                 sh 'mvn deploy -DskipTests'
             }
         }
 
         stage('Deploy to Localhost') {
-        echo 'Deploy on localhost'
             steps {
+                echo 'Deploy on localhost'
                 // Copia o novo JAR para dentro do container
                 sh 'docker cp target/*.jar ms-applications:/app/app.jar'
 
