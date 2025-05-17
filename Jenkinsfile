@@ -9,18 +9,21 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+            echo 'Checkout fase'
                 checkout scm
             }
         }
 
         stage('Build') {
             steps {
+            echo 'Build fase'
                 sh 'mvn clean package -DskipTests'
             }
         }
 
         stage('Test') {
             steps {
+            echo 'test fase'
                 sh 'mvn test'
             }
             post {
@@ -31,12 +34,14 @@ pipeline {
         }
 
         stage('Deploy to Nexus') {
+            echo 'Nexus fase'
             steps {
                 sh 'mvn deploy -DskipTests'
             }
         }
 
         stage('Deploy to Localhost') {
+        echo 'Deploy on localhost'
             steps {
                 // Copia o novo JAR para dentro do container
                 sh 'docker cp target/*.jar ms-applications:/app/app.jar'
