@@ -32,7 +32,7 @@ pipeline {
             steps {
                 echo 'Deploy on localhost'
                 sh 'docker rm -f ms-applications || true'
-                sh 'docker run -d --name ms-applications -p 8085:8085 ms-applications'
+                sh 'docker run -d --name ms-applications --network mongo-net -p 8085:8085 ms-applications'
             }
         }
     }
